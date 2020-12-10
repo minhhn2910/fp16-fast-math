@@ -4,8 +4,8 @@
   We implemented most popular math functions with the same function signature as cuda `math.h`. Thus,
   the library can be used by simply including our header file `./include/fast_math.cuh`
 ### Supporting operation overload:
-  Because some of the older version of CUDA does not support operator overload for half2 type, the header `./include/half2_operator_overload.cuh` will help our code compiled successfully.
-  Noted that some newer version of CUDA does support most of the operator overload defined in the above header file. In these cases, we need to remove the conflict definition from `half2_operator_overload.cuh` to avoid compiler complain.
+  Because some of the older versions of CUDA do not support operator overload for half2 type, the header `./include/half2_operator_overload.cuh` will help our code compiled successfully.
+  Noted that some newer versions of CUDA does support most of the operator overload defined in the above header file. In these cases, we need to remove the conflict definitions from `half2_operator_overload.cuh` to avoid compiler complain.
   The current half2_operator_overload may receives complain from some earlier or later CUDA than our test version `CUDA 10.0`. If it does not work, feel free to open issue in this repository, I will try my best to help.
 ### Microbenchmarking the approx math library
   The folder `./microbenchmarkSFU/benchmarks/` contains the simple micro benchmark to measure accuracy and performance of various default math function in CUDA and our approximate equivalence.
