@@ -10,10 +10,7 @@ NVIDIA RTX A4500, SM 8.6, release 13.0, `-arch=native`.
 - Latency: one dependent chain; `clock64()` cycles per call.
 - SASS: instruction mix of the latency kernel. This library is ALU-only (no MUFU).
 
-## Accuracy
-
-![Mean relative error vs fp32](microbenchmarkSFU/auto_bench/results/rel_error.png)
-
+## Accuracy (Same as in README.md)
 ## Performance
 
 | Function | GElem/s | vs h2 | vs fast-math | vs fp32 | Cycles |
