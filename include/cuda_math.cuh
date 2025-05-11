@@ -125,8 +125,8 @@ __device__ half2 fast_h2acos(half2 input){
 
   float2 input_float = __half22float2(input);
 	float2 result;
-	result.x = acosf(input.x);
-	result.y = acosf(input.y);
+	result.x = acosf(input_float.x);
+	result.y = acosf(input_float.y);
 	return __float22half2_rn(result);
 }
 

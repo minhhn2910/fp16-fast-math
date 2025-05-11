@@ -50,7 +50,8 @@ __device__ half2 exp_half2_saturated(half2 input) {
     if(input.y < __float2half_rn(-10))
         result_short2.y = 0;
     if(input.y > __float2half_rn(10))
-        result_short2.x  = 31743;
+        //31743 = 7BFF (65504 - largest normal number)
+        result_short2.y  = 31743;
 
   return *(half2*)(&result_short2);
 }
@@ -75,7 +76,7 @@ __device__ half2 fast_h2log2(half2 input){
     half2 exp_raw_half2 = *(half2*)&exp_raw;
     short exp1 = __half_as_ushort(exp_raw_half2.x) - 15;
     short exp2 = __half_as_ushort(exp_raw_half2.y) - 15;
-    __half2_raw exp_converted ;
+    half2 exp_converted;
     exp_converted.x = __short2half_rn(exp1);
     exp_converted.y = __short2half_rn(exp2);
     uint32_t mantissa = input_int & 0x03ff03ff;
@@ -321,7 +322,7 @@ __device__ half2_2 fast_h2sincos(half2 x){
   half2 coeff_cos2 = __float2half2_rn(0.041666667);
   half2 coeff_cos3 = __float2half2_rn(-0.0013888889);
   result_cos =  1 +  x_2*coeff_cos1 + x_4*coeff_cos2 + x_6*coeff_cos3 ;
-  result_sin = normalized +  x_2*normalized*coeff1 + x_4*x*coeff2 + x_6*x*coeff3 ;
+  result_sin = normalized +  x_2*normalized*coeff1 + x_4*normalized*coeff2 + x_6*normalized*coeff3 ;
 
   half2_2 result;
   result.x = result_sin;
